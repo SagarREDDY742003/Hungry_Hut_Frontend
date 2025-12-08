@@ -7,11 +7,11 @@ const initialValues={
     categoryName: "",
     restaurantId: "",
   }
-const CreateFoodCategoryForm = () => {
+const CreateFoodCategoryForm = ({handleClose}) => {
 
   const dispatch = useDispatch();
   const [formData, setFormData] = useState(initialValues);
-    const restaurant = useSelector((store) => store.restaurant.usersRestaurant);
+  const restaurant = useSelector((store) => store.restaurant.usersRestaurant);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,15 +22,18 @@ const CreateFoodCategoryForm = () => {
       },
     };
     dispatch(createCategory({data:data,jwt:localStorage.getItem("jwt")}));
+    setFormData(initialValues);
+    handleClose();
   };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({
-      ...FormData,
+      ...formData,
       [name]: value,
     });
   };
+
   return (
     <div className="">
       <div className="p-3">
@@ -43,7 +46,7 @@ const CreateFoodCategoryForm = () => {
             name="categoryName"
             label="Food Category"
             onChange={handleInputChange}
-            value={FormData.categoryName}
+            value={formData.categoryName}
             fullWidth
           />
           <Button type="submit" variant="contained" fullWidth>

@@ -72,7 +72,7 @@ const FoodCategoryTable = () => {
               <Close />
             </IconButton>
           </Box>
-          <CreateFoodCategoryForm />
+          <CreateFoodCategoryForm handleClose={handleClose} />
         </Box>
       </Modal>
     </Box>
