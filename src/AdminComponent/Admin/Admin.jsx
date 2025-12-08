@@ -40,8 +40,8 @@ const Admin = () => {
   }, [usersRestaurant, jwt, dispatch]);
 
   return (
-    <div>
-      <div className="px-3 sticky top-0 py-2 bg-[#b80742] flex justify-between z-50">
+    <div className="h-screen flex flex-col overflow-hidden">
+      <div className="px-3 py-2 bg-[#b80742] flex justify-between z-50 shrink-0">
         <div
           className="lg:mr-10 cursor-pointer flex items-center space-x-2"
           onClick={() => navigate("/")}
@@ -63,12 +63,12 @@ const Admin = () => {
         </div>
       </div>
 
-      <div className="lg:flex justify-between space-y-3">
+      <div className="lg:flex justify-between flex-1 overflow-hidden">
         <div className="z-20">
           <AdminSideBar open={open} handleClose={handleClose} />
         </div>
 
-        <div className="lg:w-[80%] px-1">
+        <div className="lg:w-[80%]  px-1 h-full overflow-hidden">
           <Routes>
             <Route path="/orders" element={<Orders />} />
             <Route path="/menu" element={<Menu />} />
