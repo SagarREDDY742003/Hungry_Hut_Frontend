@@ -30,10 +30,10 @@ export const findCart = (token) => {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log("findCart", response.data);
+      // console.log("findCart", response.data);
       dispatch({ type: FIND_CART_SUCCESS, payload: response.data });
     } catch (error) {
-      console.log("error", error);
+      // console.log("error", error);
       dispatch({ type: FIND_CART_FAILURE, payload: error });
     }
   };
@@ -48,10 +48,10 @@ export const getAllCartItems = (reqData) => {
           Authorization: `Bearer ${reqData.token}`,
         },
       });
-      console.log("getAllCartItems", response.data);
+      // console.log("getAllCartItems", response.data);
       dispatch({ type: GET_ALL_CART_ITEMS_SUCCESS, payload: response.data });
     } catch (error) {
-      console.log("error", error);
+      // console.log("error", error);
       dispatch({ type: GET_ALL_CART_ITEMS_FAILURE, payload: error });
     }
   };
@@ -66,11 +66,11 @@ export const addItemToCart = (reqData) => {
           Authorization: `Bearer ${reqData.token}`,
         },
       });
-      console.log("addItemToCart", data);
+      // console.log("addItemToCart", data);
       dispatch({ type: ADD_ITEM_TO_CART_SUCCESS, payload: data });
       dispatch(findCart(reqData.token));
     } catch (error) {
-      console.log("error", error);
+      // console.log("error", error);
       dispatch({ type: ADD_ITEM_TO_CART_FAILURE, payload: error.message });
     }
   };
@@ -85,11 +85,11 @@ export const updateCartItem = (reqData) => {
           Authorization: `Bearer ${reqData.jwt}`,
         },
       });
-      console.log("updateCartItem", data);
+      // console.log("updateCartItem", data);
       dispatch({ type: UPDATE_CART_ITEM_SUCCESS, payload: data });
       dispatch(findCart(reqData.jwt));
     } catch (error) {
-      console.log("error", error);
+      // console.log("error", error);
       dispatch({ type: UPDATE_CART_ITEM_FAILURE, payload: error.message });
     }
   };
@@ -104,10 +104,10 @@ export const removeCartItem = ({ cartItemId, jwt }) => {
           Authorization: `Bearer ${jwt}`,
         },
       });
-      console.log("removeCartItem", data);
+      // console.log("removeCartItem", data);
       dispatch({ type: REMOVE_CART_ITEM_SUCCESS, payload: cartItemId });
     } catch (error) {
-      console.log("error", error);
+      // console.log("error", error);
       dispatch({ type: REMOVE_CART_ITEM_FAILURE, payload: error.message });
     }
   };
@@ -126,10 +126,10 @@ export const clearCart = () => {
           },
         }
       );
-      console.log("clearCart", data);
+      // console.log("clearCart", data);
       dispatch({ type: CLEAR_CART_SUCCESS, payload: data });
     } catch (error) {
-      console.log("error", error);
+      // console.log("error", error);
       dispatch({ type: CLEAR_CART_FAILURE, payload: error.message });
     }
   };

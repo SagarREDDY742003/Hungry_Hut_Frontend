@@ -21,10 +21,10 @@ export const updateOrderStatus = ({ orderId, orderStatus, jwt }) => {
           },
         }
       );
-      console.log("updateOrderStatus", response.data);
+      // console.log("updateOrderStatus", response.data);
       dispatch({ type: UPDATE_ORDER_STATUS_SUCCESS, payload: response.data });
     } catch (error) {
-      console.log("error", error);
+      // console.log("error", error);
       dispatch({ type: UPDATE_ORDER_STATUS_FAILURE, payload: error });
     }
   };
@@ -40,10 +40,10 @@ export const getRestaurantsOrder = ({ restaurantId, orderStatus, jwt }) => {
           Authorization: `Bearer ${jwt}`,
         },
       });
-      console.log("getRestaurantsOrder", data);
+      // console.log("getRestaurantsOrder", data);
       dispatch({ type: GET_RESTAURANT_ORDER_SUCCESS, payload: data });
     } catch (error) {
-      console.log("error", error);
+      // console.log("error", error);
       dispatch({ type: GET_RESTAURANT_ORDER_FAILURE, payload: error });
     }
   };

@@ -26,13 +26,13 @@ export const getIngredientsOfRestaurant = ({ id, jwt }) => {
           },
         }
       );
-      console.log("getIngredientsOfRestaurant", response.data);
+      // console.log("getIngredientsOfRestaurant", response.data);
       dispatch({
         type: GET_INGREDIENTS,
         payload: response.data,
       });
     } catch (error) {
-      console.log("getIngredientsOfRestaurant", error);
+      // console.log("getIngredientsOfRestaurant", error);
     }
   };
 };
@@ -46,13 +46,13 @@ export const createIngredient = ({ data, jwt }) => {
           Authorization: `Bearer ${jwt}`,
         },
       });
-      console.log("createIngredient", response.data);
+      // console.log("createIngredient", response.data);
       dispatch({
         type: CREATE_INGREDIENT_SUCCESS,
         payload: response.data,
       });
     } catch (error) {
-      console.log("createIngredient", error);
+      // console.log("createIngredient", error);
       dispatch({ type: CREATE_INGREDIENT_FAILURE, payload: error });
     }
   };
@@ -67,13 +67,13 @@ export const createIngredientCategory = ({ data, jwt }) => {
           Authorization: `Bearer ${jwt}`,
         },
       });
-      console.log("createIngredientCategory", response.data);
+      // console.log("createIngredientCategory", response.data);
       dispatch({
         type: CREATE_INGREDIENT_CATEGORY_SUCCESS,
         payload: response.data,
       });
     } catch (error) {
-      console.log("createIngredientCategory", error);
+      // console.log("createIngredientCategory", error);
       dispatch({ type: CREATE_INGREDIENT_CATEGORY_FAILURE, payload: error });
     }
   };
@@ -91,13 +91,13 @@ export const getIngredientCategory = ({ id, jwt }) => {
           },
         }
       );
-      console.log("getIngredientCategory", response.data);
+      // console.log("getIngredientCategory", response.data);
       dispatch({
         type: GET_INGREDIENT_CATEGORY_SUCCESS,
         payload: response.data,
       });
     } catch (error) {
-      console.log("getIngredientCategory", error);
+      // console.log("getIngredientCategory", error);
       dispatch({ type: GET_INGREDIENT_CATEGORY_FAILURE, payload: error });
     }
   };

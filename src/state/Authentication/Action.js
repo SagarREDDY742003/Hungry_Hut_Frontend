@@ -34,7 +34,7 @@ export const registerUser = (reqData) => async (dispatch) => {
     dispatch({ type: REGISTER_SUCCESS, payload: data.jwt });
   } catch (error) {
     dispatch({ type: REGISTER_FAILURE, payload: error });
-    console.log("error", error);
+    // console.log("error", error);
   }
 };
 
@@ -87,7 +87,7 @@ export const addToFavourite = (jwt, restaurantId) => async (dispatch) => {
     dispatch({ type: ADD_TO_FAVORITE_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: ADD_TO_FAVORITE_FAILURE, payload: error });
-    console.log("error", error);
+    // console.log("error", error);
   }
 };
 
@@ -96,6 +96,6 @@ export const logout = () => async (dispatch) => {
     localStorage.clear();
     dispatch({ type: LOGOUT });
   } catch (error) {
-    console.log("error", error);
+    // console.log("error", error);
   }
 };

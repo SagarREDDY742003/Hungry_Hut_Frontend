@@ -13,10 +13,10 @@ export const createOrder = (reqData) => {
       if(data.payment_url){
         window.location.href=data.payment_url;
       }
-      console.log("create Order", data);
+      // console.log("create Order", data);
       dispatch({ type: CREATE_ORDER_SUCCESS, payload: data });
     } catch (error) {
-      console.log("error", error);
+      // console.log("error", error);
       dispatch({ type: CREATE_ORDER_FAILURE, payload: error });
     }
   };
@@ -31,10 +31,10 @@ export const getUsersOrder = (jwt) => {
           Authorization: `Bearer ${jwt}`,
         },
       });
-      console.log("create Order", data);
+      // console.log("create Order", data);
       dispatch({ type: GET_USERS_ORDER_SUCCESS, payload: data });
     } catch (error) {
-      console.log("error", error);
+      // console.log("error", error);
       dispatch({ type: GET_USERS_ORDER_FAILURE, payload: error });
     }
   };
