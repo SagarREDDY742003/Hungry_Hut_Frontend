@@ -90,7 +90,7 @@ const OrderTable = ({ order }) => {
         {order.items.map((item, idx) => (
           <div
             key={item.id}
-            className="flex items-center gap-4 bg-[#252525] rounded-lg p-3 w-fit h-40"
+            className="flex items-center gap-4 bg-[#252525] rounded-lg p-3 w-fit mt-0"
           >
             <Avatar
               src={item.food.images[0]}
