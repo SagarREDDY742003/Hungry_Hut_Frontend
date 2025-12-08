@@ -28,6 +28,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUsersOrder } from "../../../state/Order/Action";
+import OrderCard from "./OrderCard";
 import OrderTable from "./OrderTable";
 
 const Orders = () => {
@@ -36,22 +37,32 @@ const Orders = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getUsersOrder(jwt));
+    if (jwt) {
+      dispatch(getUsersOrder(jwt));
+    }
   }, [auth.jwt, jwt, dispatch]);
 
   return (
-    <div className="h-full flex flex-col p-4">
-      <h1 className="text-xl font-semibold py-4 text-center text-white">
+    <div className="h-full flex flex-col bg-[#111] text-white">
+      <h1 className="text-2xl font-semibold py-5 text-center">
         My Orders
       </h1>
-      <div className="flex-1 overflow-hidden">
-        <OrderTable orders={order.orders} />
+
+      {/* Scroll only this section, hide scrollbar */}
+      <div className="flex-1 overflow-auto no-scrollbar px-4 pb-6">
+        {order.orders
+          ?.slice()
+          .reverse()
+          .map((ord) => (
+            <OrderTable key={ord.id} order={ord} />
+          ))}
       </div>
     </div>
   );
 };
 
 export default Orders;
+
 
 
 
