@@ -10,6 +10,7 @@ const initialValues = {
   password: "",
   role: "",
 };
+const confirmPassword="";
 
 const RegisterForm = () => {
   const navigate = useNavigate();
@@ -17,6 +18,14 @@ const RegisterForm = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = (values) => {
+     if (!values.email || !values.password || !values.fullName || !values.role  || !confirmPassword) {
+      alert("All fields are mandatory!");
+      return;
+    }
+    if(values.password !== confirmPassword){
+      alert("Password and Confirm Password do not match!");
+      return;
+    }
     dispatch(registerUser({userData:values,navigate}))
   };
 
@@ -47,6 +56,15 @@ const RegisterForm = () => {
             as={TextField}
             name="password"
             label="Password"
+            fullWidth
+            variant="outlined"
+            margin="normal"
+            type="password"
+          />
+          <Field
+            as={TextField}
+            name="confirmPassword"
+            label="Confirm Password"
             fullWidth
             variant="outlined"
             margin="normal"

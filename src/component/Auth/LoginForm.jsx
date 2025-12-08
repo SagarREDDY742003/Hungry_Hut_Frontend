@@ -16,7 +16,13 @@ const Login = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = (values) => {
+
+    if (!values.email || !values.password) {
+      alert("All fields are mandatory!");
+      return;
+    }
     dispatch(loginUser({userData:values,navigate}))
+    
   };
 
   return (
