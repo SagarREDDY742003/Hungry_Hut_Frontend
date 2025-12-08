@@ -40,9 +40,11 @@ const Orders = () => {
   }, [auth.jwt, jwt, dispatch]);
 
   return (
-    <div className="px-4 pb-5 h-screen flex flex-col">
-      <h1 className="text-xl font-semibold py-6 text-center">My Orders</h1>
-      <div className="flex-1 overflow-auto">
+    <div className="h-full flex flex-col p-4">
+      <h1 className="text-xl font-semibold py-4 text-center text-white">
+        My Orders
+      </h1>
+      <div className="flex-1 overflow-hidden">
         <OrderTable orders={order.orders} />
       </div>
     </div>
@@ -50,5 +52,6 @@ const Orders = () => {
 };
 
 export default Orders;
+
 
 

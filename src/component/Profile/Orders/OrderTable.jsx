@@ -55,98 +55,107 @@ import {
 import React from "react";
 
 const OrderTable = ({ orders }) => {
-  // latest first
   const sortedOrders = orders?.slice().reverse();
 
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="my orders table">
+    <TableContainer component={Paper} sx={{ maxHeight: "100%", bgcolor: "#1f1f1f" }}>
+      <Table
+        sx={{
+          minWidth: 650,
+          color: "#fff",
+        }}
+        stickyHeader
+        aria-label="my orders table"
+      >
         <TableHead>
           <TableRow>
-            <TableCell align="center">Order ID</TableCell>
-            <TableCell align="center">Items</TableCell>
-            <TableCell align="center">Total Price</TableCell>
-            <TableCell align="center">Status</TableCell>
+            <TableCell align="center" sx={{ color: "#bbb" }}>Order ID</TableCell>
+            <TableCell align="center" sx={{ color: "#bbb" }}>Items</TableCell>
+            <TableCell align="center" sx={{ color: "#bbb" }}>Total Price</TableCell>
+            <TableCell align="center" sx={{ color: "#bbb" }}>Status</TableCell>
           </TableRow>
         </TableHead>
 
         <TableBody>
           {sortedOrders?.map((order) => (
-            <TableRow key={order.id}>
+            <TableRow key={order.id} hover sx={{ '&:last-child td': { border: 0 } }}>
               {/* Order ID */}
-              <TableCell align="center">{order.id}</TableCell>
+              <TableCell align="center" sx={{ color: "#fff" }}>{order.id}</TableCell>
 
-              {/* Items: nested table */}
-              <TableCell align="center">
-                <Table size="small" aria-label="items table">
-                  <TableBody>
-                    {order.items.map((item) => (
-                      <TableRow key={item.id}>
-                        {/* Image */}
-                        <TableCell align="center">
-                          <Avatar
-                            src={item.food.images[0]}
-                            alt={item.food.name}
-                            sx={{ width: 40, height: 40, mx: "auto" }}
-                          />
-                        </TableCell>
-
-                        {/* Name + qty + price */}
-                        <TableCell>
-                          <div className="flex flex-col">
-                            <span className="font-medium text-sm">
-                              {item.food.name}
-                            </span>
-                            <span className="text-xs text-gray-400">
-                              Qty: {item.quantity}
-                            </span>
-                            <span className="text-xs text-gray-400">
-                              ₹{item.totalPrice}
-                            </span>
-                          </div>
-                        </TableCell>
-
-                        {/* Ingredients */}
-                        <TableCell>
-                          <div className="flex flex-wrap gap-1">
-                            {item.ingredients?.map((ing) => (
-                              <Chip
-                                key={ing}
-                                label={ing}
-                                size="small"
-                                sx={{ fontSize: "0.65rem" }}
-                              />
-                            ))}
-                          </div>
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
+              {/* Items list */}
+              <TableCell align="center" sx={{ padding: "0.5rem" }}>
+                <div className="flex flex-col gap-2">
+                  {order.items.map((item, idx) => (
+                    <div
+                      key={item.id}
+                      className="flex items-center gap-4"
+                      style={{
+                        paddingBottom: idx < order.items.length - 1 ? "0.5rem" : 0,
+                        borderBottom:
+                          idx < order.items.length - 1
+                            ? "1px solid rgba(255,255,255,0.1)"
+                            : "none",
+                      }}
+                    >
+                      <Avatar
+                        src={item.food.images[0]}
+                        alt={item.food.name}
+                        sx={{ width: 40, height: 40 }}
+                      />
+                      <div className="flex-1 flex flex-col gap-1">
+                        <span className="font-medium text-sm" style={{ color: "#fff" }}>
+                          {item.food.name}
+                        </span>
+                        <span className="text-xs text-gray-400">
+                          Qty: {item.quantity}
+                        </span>
+                        <span className="text-xs text-gray-400">
+                          ₹{item.totalPrice}
+                        </span>
+                        <div className="flex flex-wrap gap-1 mt-1">
+                          {item.ingredients.map((ing) => (
+                            <Chip
+                              key={ing}
+                              label={ing}
+                              size="small"
+                              sx={{
+                                backgroundColor: "#333",
+                                color: "#eee",
+                                fontSize: "0.7rem",
+                              }}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </TableCell>
 
               {/* Total price */}
-              <TableCell align="center" className="font-semibold">
+              <TableCell align="center" sx={{ color: "#fff", fontWeight: 500 }}>
                 ₹{order.totalPrice}
               </TableCell>
 
               {/* Status */}
               <TableCell align="center">
                 <Button
-                  variant="outlined"
+                  variant="contained"
                   disabled
                   sx={{
+                    textTransform: "none",
                     px: 2,
-                    borderRadius: 999,
+                    borderRadius: "20px",
                     fontSize: "0.75rem",
-                    color:
+                    backgroundColor:
                       order.orderStatus === "DELIVERED"
-                        ? "lightgreen"
+                        ? "green"
                         : order.orderStatus === "PENDING"
-                        ? "gold"
+                        ? "orange"
                         : order.orderStatus === "OUT_FOR_DELIVERY"
-                        ? "#40c4ff"
-                        : "#ff4d4d",
+                        ? "#0099ff"
+                        : "#777",
+                    color: "#fff",
                   }}
                 >
                   {order.orderStatus}
@@ -161,6 +170,7 @@ const OrderTable = ({ orders }) => {
 };
 
 export default OrderTable;
+
 
 
 
