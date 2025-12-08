@@ -46,8 +46,6 @@ const Orders = () => {
       <h1 className="text-2xl font-semibold py-5 text-center">
         My Orders
       </h1>
-
-      {/* Scroll only this section, hide scrollbar */}
       <div className="flex-1 overflow-auto no-scrollbar px-4 pb-6">
         {order.orders
           ?.slice()
