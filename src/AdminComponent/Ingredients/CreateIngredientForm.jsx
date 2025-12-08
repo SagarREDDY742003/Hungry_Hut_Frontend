@@ -28,7 +28,8 @@ const CreateIngredientForm = ({ handleClose }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-        if (!FormData.name) {
+
+    if (!FormData.name) {
       alert("All fields are mandatory!");
       return;
     }
@@ -41,6 +42,7 @@ const CreateIngredientForm = ({ handleClose }) => {
     dispatch(
       createIngredient({ data: data, jwt: localStorage.getItem("jwt") })
     );
+
     setFormData(initialValues);
     handleClose();
   };

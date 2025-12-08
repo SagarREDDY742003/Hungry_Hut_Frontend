@@ -3,11 +3,10 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createIngredientCategory } from "../../state/Ingredients/Action";
 
-const CreateIngredientsCategoryForm = ({handleClose}) => {
-
+const CreateIngredientsCategoryForm = ({ handleClose }) => {
   const dispatch = useDispatch();
   const jwt = localStorage.getItem("jwt");
-  const restaurant = useSelector(store=>store.restaurant.usersRestaurant)
+  const restaurant = useSelector((store) => store.restaurant.usersRestaurant);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -15,17 +14,15 @@ const CreateIngredientsCategoryForm = ({handleClose}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-      if (
-      !formData.name
-    ) {
+    if (!formData.name) {
       alert("All fields are mandatory!");
       return;
     }
     const data = {
-      name:formData.name,
-      restaurantId:restaurant.id
-    }
-    dispatch(createIngredientCategory({data:data,jwt:jwt}));
+      name: formData.name,
+      restaurantId: restaurant.id,
+    };
+    dispatch(createIngredientCategory({ data: data, jwt: jwt }));
     setFormData({
       name: "",
     });
@@ -36,7 +33,7 @@ const CreateIngredientsCategoryForm = ({handleClose}) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: value
+      [name]: value,
     });
   };
   return (
