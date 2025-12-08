@@ -86,7 +86,7 @@ const OrderTable = ({ order }) => {
       </div>
 
       {/* Items */}
-      <div className="space-y-3 mt-3 flex flex-row flex-wrap gap-4">
+      <div className="space-y-3 mt-3 flex flex-row">
         {order.items.map((item, idx) => (
           <div
             key={item.id}
