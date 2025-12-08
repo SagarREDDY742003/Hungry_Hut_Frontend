@@ -15,6 +15,12 @@ const CreateIngredientsCategoryForm = ({handleClose}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+      if (
+      !formData.name
+    ) {
+      alert("All fields are mandatory!");
+      return;
+    }
     const data = {
       name:formData.name,
       restaurantId:restaurant.id

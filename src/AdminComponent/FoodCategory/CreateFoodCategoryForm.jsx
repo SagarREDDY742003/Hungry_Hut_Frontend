@@ -15,6 +15,12 @@ const CreateFoodCategoryForm = ({handleClose}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+        if (
+      !formData.categoryName
+    ) {
+      alert("All fields are mandatory!");
+      return;
+    }
     const data = {
       name: formData.categoryName,
       restaurantId: {

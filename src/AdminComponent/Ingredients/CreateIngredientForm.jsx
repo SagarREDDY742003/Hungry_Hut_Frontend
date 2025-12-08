@@ -28,11 +28,16 @@ const CreateIngredientForm = ({ handleClose }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+        if (!FormData.name) {
+      alert("All fields are mandatory!");
+      return;
+    }
     const data = {
       name: FormData.name,
       categoryId: FormData.categoryId,
       restaurantId: restaurant.id,
     };
+
     dispatch(
       createIngredient({ data: data, jwt: localStorage.getItem("jwt") })
     );

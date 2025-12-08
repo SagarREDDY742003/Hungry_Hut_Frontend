@@ -1,5 +1,5 @@
 import { Box, Button, Grid, Modal, TextField } from "@mui/material";
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { useDispatch, useSelector } from "react-redux";
@@ -34,13 +34,29 @@ const CreateEventForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (
+      !formValues.imageUrl ||
+      !formValues.location ||
+      !formValues.name ||
+      !formValues.startedAt ||
+      !formValues.endsAt
+    ) {
+      alert("All fields are mandatory!");
+      return;
+    }
     const payload = {
       ...formValues,
       startedAt: formValues.startedAt?.format("MMMM DD, YYYY hh:mm A"),
       endsAt: formValues.endsAt?.format("MMMM DD, YYYY hh:mm A"),
     };
     console.log("data", payload);
-    dispatch(createEvent({ data: payload, jwt: localStorage.getItem("jwt"), restaurantId: restaurant?.id }));
+    dispatch(
+      createEvent({
+        data: payload,
+        jwt: localStorage.getItem("jwt"),
+        restaurantId: restaurant?.id,
+      })
+    );
     setFormValues(initialValues);
     handleClose();
   };
@@ -60,90 +76,90 @@ const CreateEventForm = () => {
   };
 
   return (
-      <div className="p-5">
-        <Button onClick={handleOpen} variant="contained">
-          Create new Event
-        </Button>
+    <div className="p-5">
+      <Button onClick={handleOpen} variant="contained">
+        Create new Event
+      </Button>
 
-        <Modal open={open} onClose={handleClose}>
-          <Box sx={style}>
-            <form onSubmit={handleSubmit}>
-              <Grid container spacing={3}>
-                <Grid item xs={12}>
-                  <TextField
-                    name="imageUrl"
-                    label="Image URL"
-                    variant="outlined"
-                    fullWidth
-                    value={formValues.imageUrl}
-                    onChange={handleFormChange}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    name="location"
-                    label="Location"
-                    variant="outlined"
-                    fullWidth
-                    value={formValues.location}
-                    onChange={handleFormChange}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    name="name"
-                    label="Name"
-                    variant="outlined"
-                    fullWidth
-                    value={formValues.name}
-                    onChange={handleFormChange}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <DateTimePicker
-                      label="Start Date and Time"
-                      renderInput={(props) => <TextField {...props} />}
-                      value={formValues.startedAt}
-                      onChange={(newValue) =>
-                        handleDateChange(newValue, "startedAt")
-                      }
-                      inputFormat="MM/dd/yyyy hh:mm a"
-                      className="w-full"
-                      sx={{ width: "100%" }}
-                    />
-                  </LocalizationProvider>
-                </Grid>
-                <Grid item xs={12}>
-                  <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <DateTimePicker
-                      label="End Date and Time"
-                      renderInput={(props) => <TextField {...props} />}
-                      value={formValues.endsAt}
-                      onChange={(newValue) =>
-                        handleDateChange(newValue, "endsAt")
-                      }
-                      inputFormat="MM/dd/yyyy h:mm a"
-                      className="w-full"
-                      sx={{ width: "100%" }}
-                    />
-                  </LocalizationProvider>
-                </Grid>
-                <Grid item xs={12}>
-                  <Button
-                    variant="contained"
-                    type="submit"
-                    color="primary"
-                    fullWidth
-                  >
-                    Create Event
-                  </Button>
-                </Grid>
+      <Modal open={open} onClose={handleClose}>
+        <Box sx={style}>
+          <form onSubmit={handleSubmit}>
+            <Grid container spacing={3}>
+              <Grid item xs={12}>
+                <TextField
+                  name="imageUrl"
+                  label="Image URL"
+                  variant="outlined"
+                  fullWidth
+                  value={formValues.imageUrl}
+                  onChange={handleFormChange}
+                />
               </Grid>
-            </form>
-          </Box>
-        </Modal>
-      </div>
+              <Grid item xs={12}>
+                <TextField
+                  name="location"
+                  label="Location"
+                  variant="outlined"
+                  fullWidth
+                  value={formValues.location}
+                  onChange={handleFormChange}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  name="name"
+                  label="Name"
+                  variant="outlined"
+                  fullWidth
+                  value={formValues.name}
+                  onChange={handleFormChange}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DateTimePicker
+                    label="Start Date and Time"
+                    renderInput={(props) => <TextField {...props} />}
+                    value={formValues.startedAt}
+                    onChange={(newValue) =>
+                      handleDateChange(newValue, "startedAt")
+                    }
+                    inputFormat="MM/dd/yyyy hh:mm a"
+                    className="w-full"
+                    sx={{ width: "100%" }}
+                  />
+                </LocalizationProvider>
+              </Grid>
+              <Grid item xs={12}>
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DateTimePicker
+                    label="End Date and Time"
+                    renderInput={(props) => <TextField {...props} />}
+                    value={formValues.endsAt}
+                    onChange={(newValue) =>
+                      handleDateChange(newValue, "endsAt")
+                    }
+                    inputFormat="MM/dd/yyyy h:mm a"
+                    className="w-full"
+                    sx={{ width: "100%" }}
+                  />
+                </LocalizationProvider>
+              </Grid>
+              <Grid item xs={12}>
+                <Button
+                  variant="contained"
+                  type="submit"
+                  color="primary"
+                  fullWidth
+                >
+                  Create Event
+                </Button>
+              </Grid>
+            </Grid>
+          </form>
+        </Box>
+      </Modal>
+    </div>
   );
 };
 
