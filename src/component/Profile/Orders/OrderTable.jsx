@@ -54,9 +54,9 @@ import {
 } from "@mui/material";
 import React from "react";
 
-const OrderCard = ({ orders }) => {
-  const sortedOrders = orders?.slice().reverse(); // latest first
-  console.log("Orders in OrderCard:", sortedOrders);
+const OrderTable = ({ orders }) => {
+  // latest first
+  const sortedOrders = orders?.slice().reverse();
 
   return (
     <TableContainer component={Paper}>
@@ -69,33 +69,63 @@ const OrderCard = ({ orders }) => {
             <TableCell align="center">Status</TableCell>
           </TableRow>
         </TableHead>
+
         <TableBody>
           {sortedOrders?.map((order) => (
             <TableRow key={order.id}>
+              {/* Order ID */}
               <TableCell align="center">{order.id}</TableCell>
 
-              {/* Items */}
+              {/* Items: nested table */}
               <TableCell align="center">
-                <div className="flex flex-wrap gap-2 justify-center">
-                  {order.items.map((item) => (
-                    <div key={item.id} className="flex items-center gap-2 bg-slate-900 p-2 rounded">
-                      <Avatar src={item.food.images[0]} sx={{ width: 40, height: 40 }} />
-                      <div>
-                        <p className="font-medium text-sm">{item.food.name}</p>
-                        <p className="text-xs text-gray-400">Qty: {item.quantity}</p>
-                        <p className="text-xs text-gray-400">₹{item.totalPrice}</p>
-                        <div className="flex flex-wrap gap-1 mt-1">
-                          {item.ingredients.map((ing) => (
-                            <Chip key={ing} label={ing} size="small" />
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                <Table size="small" aria-label="items table">
+                  <TableBody>
+                    {order.items.map((item) => (
+                      <TableRow key={item.id}>
+                        {/* Image */}
+                        <TableCell align="center">
+                          <Avatar
+                            src={item.food.images[0]}
+                            alt={item.food.name}
+                            sx={{ width: 40, height: 40, mx: "auto" }}
+                          />
+                        </TableCell>
+
+                        {/* Name + qty + price */}
+                        <TableCell>
+                          <div className="flex flex-col">
+                            <span className="font-medium text-sm">
+                              {item.food.name}
+                            </span>
+                            <span className="text-xs text-gray-400">
+                              Qty: {item.quantity}
+                            </span>
+                            <span className="text-xs text-gray-400">
+                              ₹{item.totalPrice}
+                            </span>
+                          </div>
+                        </TableCell>
+
+                        {/* Ingredients */}
+                        <TableCell>
+                          <div className="flex flex-wrap gap-1">
+                            {item.ingredients?.map((ing) => (
+                              <Chip
+                                key={ing}
+                                label={ing}
+                                size="small"
+                                sx={{ fontSize: "0.65rem" }}
+                              />
+                            ))}
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
               </TableCell>
 
-              {/* Price */}
+              {/* Total price */}
               <TableCell align="center" className="font-semibold">
                 ₹{order.totalPrice}
               </TableCell>
@@ -106,6 +136,9 @@ const OrderCard = ({ orders }) => {
                   variant="outlined"
                   disabled
                   sx={{
+                    px: 2,
+                    borderRadius: 999,
+                    fontSize: "0.75rem",
                     color:
                       order.orderStatus === "DELIVERED"
                         ? "lightgreen"
@@ -127,6 +160,7 @@ const OrderCard = ({ orders }) => {
   );
 };
 
-export default OrderCard;
+export default OrderTable;
+
 
 
