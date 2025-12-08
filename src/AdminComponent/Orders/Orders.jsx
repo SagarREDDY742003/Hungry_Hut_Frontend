@@ -24,7 +24,7 @@ const Orders = () => {
   };
   return (
 
-    <div className="px-2 h-full flex flex-col overflow-hidden">
+    <div className=" m-2 px-2 h-full flex flex-col overflow-hidden">
       <Card className="p-5 shrink-0">
         <Typography sx={{ paddingBottom: "1rem" }} variant="h5">
           Order Status
