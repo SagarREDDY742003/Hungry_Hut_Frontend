@@ -85,7 +85,7 @@ const OrderTable = ({ filter }) => {
     <Box className="h-full">
       <Card className="mt-1 h-full flex flex-col">
         <CardHeader title={"All Orders"} sx={{ pt: 2, alignItems: "center" }} />
-        <CardContent className="flex-1 flex flex-col p-0">
+        <CardContent className="flex-1 flex flex-col p-0 overflow-hidden">
           <TableContainer component={Paper} className="flex-1 overflow-y-auto" >
             <Table sx={{ minWidth: 650 }} aria-label="orders table">
               <TableHead>

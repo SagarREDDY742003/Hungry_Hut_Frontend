@@ -25,7 +25,7 @@ const Orders = () => {
   return (
 
     <div className="px-2 h-screen flex flex-col overflow-hidden">
-      <Card className="p-5">
+      <Card className="p-5 shrink-0">
         <Typography sx={{ paddingBottom: "1rem" }} variant="h5">
           Order Status
         </Typography>
@@ -48,7 +48,10 @@ const Orders = () => {
           </RadioGroup>
         </FormControl>
       </Card>
-      <OrderTable filter={filterValue} />
+      <div className="flex-1 overflow-hidden mt-2">
+            <OrderTable filter={filterValue} />
+      </div>
+      
     </div>
   );
 };
