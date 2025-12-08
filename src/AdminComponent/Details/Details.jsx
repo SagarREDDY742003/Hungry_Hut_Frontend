@@ -13,7 +13,7 @@ const Details = () => {
     dispatch(updateRestaurantStatus({restaurantId:usersRestaurant.id , jwt:localStorage.getItem("jwt")}));
   };
   return (
-    <div className="lg:px-10 px-5">
+    <div className="lg:px-2 px-5">
       <div className="py-1 flex justify-center items-center gap-5">
         <h1 className="text-2xl lg:text-6xl text-center font-bold p-5">
           {usersRestaurant.name}

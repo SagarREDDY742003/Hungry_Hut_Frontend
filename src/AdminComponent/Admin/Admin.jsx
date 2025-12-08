@@ -68,7 +68,7 @@ const Admin = () => {
           <AdminSideBar open={open} handleClose={handleClose} />
         </div>
 
-        <div className="lg:w-[80%]  px-1 h-full overflow-hidden">
+        <div className="lg:w-[80%] h-full overflow-hidden">
           <Routes>
             <Route path="/orders" element={<Orders />} />
             <Route path="/menu" element={<Menu />} />
