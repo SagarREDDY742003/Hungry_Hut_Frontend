@@ -54,8 +54,8 @@ import {
 } from "@mui/material";
 import React from "react";
 
-const OrderTable = ({ orders }) => {
-  const sortedOrders = orders?.slice().reverse(); // latest first
+const OrderTable = ({ order }) => {
+  const sortedOrders = order.items?.slice().reverse(); // latest first
 
   return (
     <TableContainer component={Paper}>
