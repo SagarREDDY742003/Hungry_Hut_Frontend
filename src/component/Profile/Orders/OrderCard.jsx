@@ -54,8 +54,8 @@ import {
 } from "@mui/material";
 import React from "react";
 
-const OrderTable = ({ order }) => {
-  const sortedOrders = order.items?.slice().reverse(); // latest first
+const OrderCard = ({ orders }) => {
+  const sortedOrders = orders?.slice().reverse(); // latest first
 
   return (
     <TableContainer component={Paper}>
@@ -126,5 +126,6 @@ const OrderTable = ({ order }) => {
   );
 };
 
-export default OrderTable;
+export default OrderCard;
+
 
