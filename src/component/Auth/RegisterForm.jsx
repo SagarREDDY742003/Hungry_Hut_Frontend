@@ -101,7 +101,7 @@ const RegisterForm = () => {
                   fullWidth
                   variant="outlined"
                   margin="normal"
-                  type="password"
+                  type="text"
                   error={meta.touched && Boolean(meta.error)}
                   helperText={meta.touched && meta.error}
                 />
@@ -116,7 +116,7 @@ const RegisterForm = () => {
                   fullWidth
                   variant="outlined"
                   margin="normal"
-                  type="password"
+                  type="text"
                   error={meta.touched && Boolean(meta.error)}
                   helperText={meta.touched && meta.error}
                 />

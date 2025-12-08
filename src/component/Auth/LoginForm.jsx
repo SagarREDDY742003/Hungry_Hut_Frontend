@@ -1,9 +1,17 @@
-import { Button, TextField, Typography } from "@mui/material";
+import {
+  Button,
+  IconButton,
+  InputAdornment,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { Field, Form, Formik } from "formik";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../../state/Authentication/Action";
 import * as Yup from "yup";
+import { useState } from "react";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 const initialValues = {
   email: "",
@@ -19,8 +27,8 @@ const validationSchema = Yup.object({
 
 const Login = () => {
   const navigate = useNavigate();
-
   const dispatch = useDispatch();
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = (values) => {
     dispatch(loginUser({ userData: values, navigate }));
@@ -38,7 +46,6 @@ const Login = () => {
       >
         {() => (
           <Form>
-            {/* Email */}
             <Field name="email">
               {({ field, meta }) => (
                 <TextField
@@ -53,7 +60,6 @@ const Login = () => {
               )}
             </Field>
 
-            {/* Password */}
             <Field name="password">
               {({ field, meta }) => (
                 <TextField
@@ -62,9 +68,21 @@ const Login = () => {
                   fullWidth
                   variant="outlined"
                   margin="normal"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   error={meta.touched && Boolean(meta.error)}
                   helperText={meta.touched && meta.error}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          onClick={() => setShowPassword(!showPassword)}
+                          edge="end"
+                        >
+                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
                 />
               )}
             </Field>
