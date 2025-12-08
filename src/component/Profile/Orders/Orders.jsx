@@ -48,9 +48,7 @@ const Orders = () => {
       </h1>
       <div className="flex-1 overflow-auto no-scrollbar px-4 pb-6">
         {order.orders
-          ?.slice()
-          .reverse()
-          .map((ord) => (
+          ?.map((ord) => (
             <OrderTable key={ord.id} order={ord} />
           ))}
       </div>
