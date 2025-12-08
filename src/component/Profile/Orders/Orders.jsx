@@ -28,7 +28,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUsersOrder } from "../../../state/Order/Action";
-import OrderCard from "./OrderCard";
 import OrderTable from "./OrderTable";
 
 const Orders = () => {

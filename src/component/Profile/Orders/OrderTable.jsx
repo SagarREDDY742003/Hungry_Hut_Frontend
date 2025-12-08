@@ -50,8 +50,6 @@ const statusColors = {
   COMPLETED: "#6B21A8", // purple
 };
 
-const formatStatus = (status) =>
-  status.replace(/_/g, " "); // OUT_FOR_DELIVERY -> OUT FOR DELIVERY
 
 const OrderTable = ({ order }) => {
   const statusColor = statusColors[order.orderStatus] || "#6B7280"; // gray fallback
@@ -83,7 +81,7 @@ const OrderTable = ({ order }) => {
             pointerEvents: "none", // looks disabled but keeps color
           }}
         >
-          {formatStatus(order.orderStatus)}
+          {order.orderStatus}
         </Button>
       </div>
 
