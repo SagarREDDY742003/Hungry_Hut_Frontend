@@ -25,7 +25,7 @@ const Navbar = () => {
         <img
           className="h-[3.4rem] w-[3.4rem] object-cover object-center rounded-full "
           alt=""
-          src="../../assets/logo.png"
+          src="https://res.cloudinary.com/debpngulj/image/upload/v1758378624/Aldjwx9IZEnqwEt1zYxhBySZE3_rTGMgKm-9fIUnrX12_eHw6Mg7EevhnP14BLfDjkI_fjerry.png"
         />
         <li
           className="logo font-semibold italic text-gray-100 text-2xl list-none"
