@@ -99,7 +99,7 @@ const OrderTable = ({ filter }) => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {orders?.map((order) => (
+                {orders?.slice().reverse().map((order) => (
                   <TableRow
                     key={order.id}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
