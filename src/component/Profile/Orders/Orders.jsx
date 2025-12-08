@@ -40,7 +40,7 @@ const Orders = () => {
   }, [auth.jwt, jwt, dispatch]);
 
   return (
-    <div className="px-4 pb-5 h-[80%] flex flex-col">
+    <div className="px-4 pb-5 h-screen flex flex-col">
       <h1 className="text-xl font-semibold py-6 text-center">My Orders</h1>
       <div className="flex-1 overflow-auto">
         <OrderTable orders={order.orders} />
