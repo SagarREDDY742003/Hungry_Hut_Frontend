@@ -41,7 +41,7 @@ const Admin = () => {
 
   return (
     <div className="h-screen flex flex-col overflow-hidden">
-      <div className="px-1 py-2 bg-[#b80742] flex justify-between z-50 shrink-0">
+      <div className="px-3 py-2 bg-[#b80742] flex justify-between z-50 shrink-0">
         <div
           className="lg:mr-10 cursor-pointer flex items-center space-x-2"
           onClick={() => navigate("/")}
