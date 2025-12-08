@@ -56,6 +56,7 @@ import React from "react";
 
 const OrderCard = ({ orders }) => {
   const sortedOrders = orders?.slice().reverse(); // latest first
+  console.log("Orders in OrderCard:", sortedOrders);
 
   return (
     <TableContainer component={Paper}>
