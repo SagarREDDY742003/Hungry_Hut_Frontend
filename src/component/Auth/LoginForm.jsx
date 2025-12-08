@@ -6,12 +6,13 @@ import {
   Typography,
 } from "@mui/material";
 import { Field, Form, Formik } from "formik";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../../state/Authentication/Action";
 import * as Yup from "yup";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { Toast } from "../util/Toast";
 
 const initialValues = {
   email: "",
@@ -29,6 +30,11 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
+  const { error } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+  if (error) Toast(error,"login-error");
+}, [error]);
 
   const handleSubmit = (values) => {
     dispatch(loginUser({ userData: values, navigate }));
