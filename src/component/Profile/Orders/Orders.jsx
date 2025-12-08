@@ -46,9 +46,12 @@ const Orders = () => {
       <h1 className="text-2xl font-semibold py-5 text-center">
         My Orders
       </h1>
+
       <div className="flex-1 overflow-auto no-scrollbar px-4 pb-6">
         {order.orders
-          ?.map((ord) => (
+          ?.slice()
+          .reverse()
+          .map((ord) => (
             <OrderTable key={ord.id} order={ord} />
           ))}
       </div>
