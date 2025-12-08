@@ -38,7 +38,6 @@ const IngredientTable = () => {
   const ingredients = useSelector((store) => store.ingredients.ingredients);
 
   const handleStock = (id) => {
-    console.log(id);
     dispatch(updateStockOfIngredient({ id, jwt: localStorage.getItem("jwt") }));
   };
 

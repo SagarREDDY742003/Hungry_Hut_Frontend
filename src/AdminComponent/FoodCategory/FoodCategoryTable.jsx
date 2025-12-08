@@ -28,7 +28,6 @@ const FoodCategoryTable = () => {
   const handleClose = () => setOpen(false);
 
   const categories = useSelector((store) => store.restaurant.categories);
-  console.log(categories);
 
   return (
     <Box>

@@ -10,7 +10,6 @@ const UserProfile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleLogout = () => {
-    // Add your logout logic here
     dispatch(logout());
     navigate("/");
     window.location.reload();

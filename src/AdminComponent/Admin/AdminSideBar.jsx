@@ -40,7 +40,6 @@ const AdminSideBar = ({ handleClose, open }) => {
         <Drawer
           variant={isSmallScreen ? "temporary" : "permanent"}
           sx={{
-            // zIndex: 1,
             height: "calc(100% - 64px)",
             "& .MuiDrawer-paper": {
               top: "70.5px",

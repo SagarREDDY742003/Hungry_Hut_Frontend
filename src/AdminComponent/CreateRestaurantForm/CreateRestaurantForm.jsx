@@ -59,7 +59,6 @@ const CreateRestaurantForm = () => {
         openingHours: values.openingHours,
         images: values.images,
       };
-      console.log("data: ",data);
       dispatch(createRestaurant({data:data,token:jwt}));
     },
   });

@@ -9,8 +9,6 @@ const Details = () => {
     const usersRestaurant = useSelector((store) => store.restaurant.usersRestaurant);
     const dispatch = useDispatch();
 
-    console.log(usersRestaurant);
-
   const handleRestaurantStatus = () => {
     dispatch(updateRestaurantStatus({restaurantId:usersRestaurant.id , jwt:localStorage.getItem("jwt")}));
   };

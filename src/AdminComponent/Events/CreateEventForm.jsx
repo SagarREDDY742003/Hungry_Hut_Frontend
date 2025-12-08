@@ -49,7 +49,7 @@ const CreateEventForm = () => {
       startedAt: formValues.startedAt?.format("MMMM DD, YYYY hh:mm A"),
       endsAt: formValues.endsAt?.format("MMMM DD, YYYY hh:mm A"),
     };
-    console.log("data", payload);
+
     dispatch(
       createEvent({
         data: payload,

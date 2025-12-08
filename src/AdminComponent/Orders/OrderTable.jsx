@@ -57,8 +57,6 @@ const OrderTable = ({ filter }) => {
       ? orderBeforeFilter
       : orderBeforeFilter?.filter((order) => order.orderStatus === filter);
 
-  console.log(orders);
-
   useEffect(() => {
     if (!restaurant?.id) return;
     dispatch(
