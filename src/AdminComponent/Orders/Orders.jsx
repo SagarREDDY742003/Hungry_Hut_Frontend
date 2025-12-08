@@ -23,7 +23,8 @@ const Orders = () => {
     setFilterValue(value);
   };
   return (
-    <div className="px-2">
+
+    <div className="px-2 h-screen flex flex-col overflow-hidden">
       <Card className="p-5">
         <Typography sx={{ paddingBottom: "1rem" }} variant="h5">
           Order Status

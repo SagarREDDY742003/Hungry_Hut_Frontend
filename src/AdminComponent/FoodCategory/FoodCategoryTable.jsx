@@ -51,7 +51,7 @@ const FoodCategoryTable = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {categories.map((item,index) => (
+              {categories.map((item, index) => (
                 <TableRow
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   key={index}

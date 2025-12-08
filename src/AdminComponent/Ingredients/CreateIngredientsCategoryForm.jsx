@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createIngredientCategory } from "../../state/Ingredients/Action";
 
-const CreateIngredientsCategoryForm = () => {
+const CreateIngredientsCategoryForm = ({handleClose}) => {
 
   const dispatch = useDispatch();
   const jwt = localStorage.getItem("jwt");
@@ -20,6 +20,10 @@ const CreateIngredientsCategoryForm = () => {
       restaurantId:restaurant.id
     }
     dispatch(createIngredientCategory({data:data,jwt:jwt}));
+    setFormData({
+      name: "",
+    });
+    handleClose();
   };
 
   const handleInputChange = (e) => {

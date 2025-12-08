@@ -7,7 +7,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { Create } from "@mui/icons-material";
+import { Close, Create } from "@mui/icons-material";
 import CreateIngredientsCategoryForm from "./CreateIngredientsCategoryForm";
 import { useDispatch, useSelector } from "react-redux";
 import { getIngredientCategory } from "../../state/Ingredients/Action";
@@ -28,12 +28,19 @@ const IngredientCategoryTable = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const dispatch = useDispatch();
-  const restaurant = useSelector(store=>store.restaurant.usersRestaurant)
-  const ingredientCategories =useSelector(store=>store.ingredients.categories);
+  const restaurant = useSelector((store) => store.restaurant.usersRestaurant);
+  const ingredientCategories = useSelector(
+    (store) => store.ingredients.categories
+  );
 
-  useEffect(()=>{
-    dispatch(getIngredientCategory({id:restaurant.id,jwt:localStorage.getItem("jwt")}))
-  },[dispatch,restaurant])
+  useEffect(() => {
+    dispatch(
+      getIngredientCategory({
+        id: restaurant.id,
+        jwt: localStorage.getItem("jwt"),
+      })
+    );
+  }, [dispatch, restaurant]);
 
   return (
     <Box>
@@ -70,9 +77,14 @@ const IngredientCategoryTable = () => {
         </TableContainer>
       </Card>
 
-      <Modal open={open} onClose={handleClose}>
+      <Modal open={open}>
         <Box sx={style}>
-          <CreateIngredientsCategoryForm />
+          <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+            <IconButton onClick={handleClose}>
+              <Close />
+            </IconButton>
+          </Box>
+          <CreateIngredientsCategoryForm handleClose={handleClose} />
         </Box>
       </Modal>
     </Box>

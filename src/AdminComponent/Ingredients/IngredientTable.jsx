@@ -1,4 +1,11 @@
-import { Box, Button, Card, CardHeader, IconButton, Modal } from "@mui/material";
+import {
+  Box,
+  Button,
+  Card,
+  CardHeader,
+  IconButton,
+  Modal,
+} from "@mui/material";
 import React from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -7,7 +14,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { Create } from "@mui/icons-material";
+import { Close, Create } from "@mui/icons-material";
 import CreateIngredientForm from "./CreateIngredientForm";
 import { useDispatch, useSelector } from "react-redux";
 import { updateStockOfIngredient } from "../../state/Ingredients/Action";
@@ -28,12 +35,12 @@ const IngredientTable = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const dispatch = useDispatch();
-  const ingredients =useSelector(store=>store.ingredients.ingredients);
+  const ingredients = useSelector((store) => store.ingredients.ingredients);
 
-  const handleStock=(id)=>{
+  const handleStock = (id) => {
     console.log(id);
-    dispatch(updateStockOfIngredient({id,jwt:localStorage.getItem("jwt")}));
-  }
+    dispatch(updateStockOfIngredient({ id, jwt: localStorage.getItem("jwt") }));
+  };
 
   return (
     <Box>
@@ -66,7 +73,15 @@ const IngredientTable = () => {
                   <TableCell align="right">{item.id}</TableCell>
                   <TableCell align="right">{item.name}</TableCell>
                   <TableCell align="right">{item.category.name}</TableCell>
-                  <TableCell align="right"><Button onClick={()=>handleStock(item.id)} variant="outlined" color={item.inStock?"success":"warning"} >{item.inStock?"IN STOCK":"OUT OF STOCK"}</Button></TableCell>
+                  <TableCell align="right">
+                    <Button
+                      onClick={() => handleStock(item.id)}
+                      variant="outlined"
+                      color={item.inStock ? "success" : "warning"}
+                    >
+                      {item.inStock ? "IN STOCK" : "OUT OF STOCK"}
+                    </Button>
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
@@ -74,9 +89,14 @@ const IngredientTable = () => {
         </TableContainer>
       </Card>
 
-      <Modal open={open} onClose={handleClose}>
+      <Modal open={open}>
         <Box sx={style}>
-          <CreateIngredientForm />
+          <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+            <IconButton onClick={handleClose}>
+              <Close />
+            </IconButton>
+          </Box>
+          <CreateIngredientForm handleClose={handleClose} />
         </Box>
       </Modal>
     </Box>

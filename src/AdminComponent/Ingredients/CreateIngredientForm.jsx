@@ -1,30 +1,43 @@
-import { Button, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
+import {
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+} from "@mui/material";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createIngredient } from "../../state/Ingredients/Action";
 
-const CreateIngredientForm = () => {
+const initialValues = {
+  name: "",
+  categoryId: "",
+  restaurantId: "",
+};
 
-  const dispatch=useDispatch();
+const CreateIngredientForm = ({ handleClose }) => {
+  const dispatch = useDispatch();
 
-    const ingredientCategories =useSelector(store=>store.ingredients.categories);
-    const restaurant = useSelector(store=>store.restaurant.usersRestaurant)
-    
-  const [FormData, setFormData] = useState({
-    name: "",
-    categoryId: "",
-    restaurantId:""
-  });
+  const ingredientCategories = useSelector(
+    (store) => store.ingredients.categories
+  );
+  const restaurant = useSelector((store) => store.restaurant.usersRestaurant);
+
+  const [FormData, setFormData] = useState(initialValues);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = {
       name: FormData.name,
-      categoryId:FormData.categoryId,
-      restaurantId:restaurant.id
+      categoryId: FormData.categoryId,
+      restaurantId: restaurant.id,
     };
-    dispatch(createIngredient({data:data,jwt:localStorage.getItem("jwt")}));
-    
+    dispatch(
+      createIngredient({ data: data, jwt: localStorage.getItem("jwt") })
+    );
+    setFormData(initialValues);
+    handleClose();
   };
 
   const handleInputChange = (e) => {
@@ -34,7 +47,7 @@ const CreateIngredientForm = () => {
       [name]: value,
     });
   };
-  
+
   return (
     <div className="">
       <div className="p-3">
@@ -51,22 +64,21 @@ const CreateIngredientForm = () => {
             fullWidth
           />
           <FormControl fullWidth>
-                <InputLabel>Category</InputLabel>
-                <Select
-                  id="seasonal"
-                  name="categoryId"
-                  label="Is Seasonal"
-                  value={FormData.categoryId}
-                  onChange={handleInputChange}
-                  
-                >
-                  {
-                    ingredientCategories.map((category)=>
-                      <MenuItem key={category.id} value={category.id}>{category.name}</MenuItem>
-                    )
-                  }
-                </Select>
-              </FormControl>
+            <InputLabel>Category</InputLabel>
+            <Select
+              id="seasonal"
+              name="categoryId"
+              label="Is Seasonal"
+              value={FormData.categoryId}
+              onChange={handleInputChange}
+            >
+              {ingredientCategories.map((category) => (
+                <MenuItem key={category.id} value={category.id}>
+                  {category.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
           <Button type="submit" variant="contained" fullWidth>
             Create
           </Button>
