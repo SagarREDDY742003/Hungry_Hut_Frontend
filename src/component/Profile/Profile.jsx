@@ -55,15 +55,15 @@ import Address from "./Address";
 import Payments from "./Payments";
 import Notifications from "./Notifications";
 import Events from "./Events";
-import MenuIcon from "@mui/icons-material/Menu";
+import MenuIcon from '@mui/icons-material/Menu';
 
 const Profile = () => {
   const [openSideBar, setOpenSideBar] = useState(false);
 
   return (
-    // Full height, no outer scroll; inner content handles scrolling
-    <div className="h-screen w-full lg:flex bg-black text-white overflow-hidden">
-      {/* Mobile sidebar toggle */}
+    // 🔥 no h-screen, no overflow-hidden – let page scroll naturally
+    <div className="w-full lg:flex bg-black text-white">
+      {/* Mobile menu button */}
       <button
         className="lg:hidden p-2 text-white m-3"
         onClick={() => setOpenSideBar(true)}
@@ -72,15 +72,15 @@ const Profile = () => {
       </button>
 
       {/* Sidebar */}
-      <div className="lg:w-[20%] h-full">
+      <div className="lg:w-[20%]">
         <ProfileNavigation
           open={openSideBar}
           handleClose={() => setOpenSideBar(false)}
         />
       </div>
 
-      {/* Right content: fills remaining height and does not overflow page */}
-      <div className="lg:w-[80%] h-full overflow-hidden">
+      {/* Right content */}
+      <div className="lg:w-[80%] w-full">
         <Routes>
           <Route path="/" element={<UserProfile />} />
           <Route path="/orders" element={<Orders />} />
@@ -96,4 +96,5 @@ const Profile = () => {
 };
 
 export default Profile;
+
 

@@ -29,26 +29,20 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUsersOrder } from "../../../state/Order/Action";
 import OrderTable from "./OrderTable";
-
+// Orders.jsx
 const Orders = () => {
   const { auth, order } = useSelector((store) => store);
   const jwt = localStorage.getItem("jwt");
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (jwt) {
-      dispatch(getUsersOrder(jwt));
-    }
+    if (jwt) dispatch(getUsersOrder(jwt));
   }, [auth.jwt, jwt, dispatch]);
 
   return (
-    <div className="h-full flex flex-col bg-[#111] text-white">
-      <h1 className="text-2xl font-semibold py-5 text-center">
-        My Orders
-      </h1>
-
-      {/* Scroll only this section, hide scrollbar */}
-      <div className="flex-1 overflow-auto no-scrollbar px-4 pb-6">
+    <div className="flex flex-col bg-[#111] text-white">
+      <h1 className="text-2xl font-semibold py-5 text-center">My Orders</h1>
+      <div className="px-4 pb-6 space-y-0">
         {order.orders
           ?.slice()
           .reverse()
@@ -59,6 +53,7 @@ const Orders = () => {
     </div>
   );
 };
+
 
 export default Orders;
 
