@@ -47,7 +47,7 @@ const Admin = () => {
           onClick={() => navigate("/")}
         >
           <img
-            src="https://res.cloudinary.com/debpngulj/image/upload/v1758378624/Aldjwx9IZEnqwEt1zYxhBySZE3_rTGMgKm-9fIUnrX12_eHw6Mg7EevhnP14BLfDjkI_fjerry.png"
+            src="../../assets/logo.png"
             className="h-[3.4rem] w-[3.4rem] object-cover object-center rounded-full "
             alt=""
           />

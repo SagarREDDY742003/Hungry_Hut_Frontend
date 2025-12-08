@@ -137,7 +137,7 @@ export const deleteMenuItem = ({ foodId, jwt }) => {
   return async (dispatch) => {
     dispatch({ type: DELETE_MENU_ITEM_REQUEST });
     try {
-      const { data } = await api.delete(`api/admin/food/${foodId}`, {
+      await api.delete(`api/admin/food/${foodId}`, {
         headers: {
           Authorization: `Bearer ${jwt}`,
         },

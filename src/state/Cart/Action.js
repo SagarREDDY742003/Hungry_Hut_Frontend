@@ -78,7 +78,7 @@ export const addItemToCart = (reqData) => {
 
 export const updateCartItem = (reqData) => {
   return async (dispatch) => {
-    dispatch({type:UPDATE_CART_ITEM_REQUEST});
+    dispatch({ type: UPDATE_CART_ITEM_REQUEST });
     try {
       const { data } = await api.put(`api/cart-item/update`, reqData.data, {
         headers: {
@@ -99,7 +99,7 @@ export const removeCartItem = ({ cartItemId, jwt }) => {
   return async (dispatch) => {
     dispatch({ type: REMOVE_CART_ITEM_REQUEST });
     try {
-      const { data } = await api.delete(`api/cart-item/${cartItemId}/remove`, {
+      await api.delete(`api/cart-item/${cartItemId}/remove`, {
         headers: {
           Authorization: `Bearer ${jwt}`,
         },
