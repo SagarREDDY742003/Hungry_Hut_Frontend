@@ -3,7 +3,7 @@ import MenuTable from "./MenuTable";
 
 const Menu = () => {
   return (
-    <div className="px-2 pb-10">
+    <div className="px-2 pt-2 pb-10">
       <MenuTable />
     </div>
   );
